@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
-import 'package:flutter_weather/blocs/blocs.dart';
+import 'package:flutter_web_weather/blocs/blocs.dart';
 
 class Temperature extends StatelessWidget {
   final double temperature;

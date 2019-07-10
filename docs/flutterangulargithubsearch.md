@@ -427,7 +427,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc: ^0.18.0
+  flutter_bloc: ^0.19.0
   url_launcher: ^4.0.3
   common_github_search:
     path: ../common_github_search
@@ -462,8 +462,8 @@ Let's create `search_form.dart`.
 > Our `SearchForm` will be a `StatelessWidget` which renders the `SearchBar` and `SearchBody` widgets.
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:common_github_search/common_github_search.dart';
@@ -634,8 +634,8 @@ class _SearchResultItem extends StatelessWidget {
 At this point our `search_form.dart` should look like
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:common_github_search/common_github_search.dart';
@@ -764,12 +764,12 @@ class _SearchResultItem extends StatelessWidget {
 Now all that's left to do is implement our main app in `main.dart`.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 import 'package:meta/meta.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 import 'package:common_github_search/common_github_search.dart';
-import 'package:flutter_github_search/search_form.dart';
+import 'package:flutter_web_github_search/search_form.dart';
 
 void main() {
   final GithubRepository _githubRepository = GithubRepository(

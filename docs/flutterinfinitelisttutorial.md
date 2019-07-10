@@ -28,7 +28,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc: ^0.18.0
+  flutter_bloc: ^0.19.0
   http: ^0.12.0
   equatable: ^0.2.0
 
@@ -141,7 +141,7 @@ We can now create `bloc/post_state.dart` and implement it like so.
 ```dart
 import 'package:equatable/equatable.dart';
 
-import 'package:flutter_infinite_list/post.dart';
+import 'package:flutter_web_infinite_list/post.dart';
 
 abstract class PostState extends Equatable {
   PostState([List props = const []]) : super(props);
@@ -204,8 +204,8 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:flutter_infinite_list/bloc/bloc.dart';
-import 'package:flutter_infinite_list/post.dart';
+import 'package:flutter_web_infinite_list/bloc/bloc.dart';
+import 'package:flutter_web_infinite_list/post.dart';
 
 class PostBloc extends Bloc<PostEvent, PostState> {
   final http.Client httpClient;
@@ -321,8 +321,8 @@ import 'package:rxdart/rxdart.dart';
 import 'package:http/http.dart' as http;
 import 'package:bloc/bloc.dart';
 
-import 'package:flutter_infinite_list/post.dart';
-import 'package:flutter_infinite_list/bloc/bloc.dart';
+import 'package:flutter_web_infinite_list/post.dart';
+import 'package:flutter_web_infinite_list/bloc/bloc.dart';
 
 class PostBloc extends Bloc<PostEvent, PostState> {
   final http.Client httpClient;
@@ -405,11 +405,11 @@ In our `main.dart` we can start by implementing our main function and calling `r
 In our `App` widget, we use `BlocProvider` to create and provide an instance of `PostBloc` to the subtree. Also, we dispatch a `Fetch` event so that when the app loads, it requests the initial batch of Posts.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
-import 'package:flutter_infinite_list/bloc/bloc.dart';
+import 'package:flutter_web_infinite_list/bloc/bloc.dart';
 
 void main() {
   runApp(App());

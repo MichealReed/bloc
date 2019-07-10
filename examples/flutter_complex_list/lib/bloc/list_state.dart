@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-import 'package:flutter_complex_list/models/models.dart';
+import 'package:flutter_web_complex_list/models/models.dart';
 
 @immutable
 abstract class ListState extends Equatable {

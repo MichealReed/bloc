@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 import 'package:user_repository/user_repository.dart';
 
-import 'package:flutter_login/authentication/authentication.dart';
+import 'package:flutter_web_login/authentication/authentication.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {

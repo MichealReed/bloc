@@ -44,9 +44,9 @@ We're going to have 3 parts to our UI:
 #### App
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
 void main() => runApp(App());
 
@@ -135,7 +135,7 @@ Next, we'll take a look at how to provide a bloc across multiple pages/routes.
 
 ## Route Access
 
-> In this example, we're going to use `BlocProvider` to access a bloc across routes. Indeed if you push a new route you  will have a different `BuildContext` which doesn’t have a reference to the previously provided blocs. That's why we'll have to create a new `BlocProvider`.
+> In this example, we're going to use `BlocProvider` to access a bloc across routes. When a new route is pushed, it will have a different `BuildContext` which no longer has a reference to the previously provided blocs. As a result, we have to wrap the new route in a separate `BlocProvider`.
 
 ### Bloc
 
@@ -173,9 +173,9 @@ Again, we're going to have three parts to our application's UI:
 #### App
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
 void main() => runApp(App());
 
@@ -328,9 +328,9 @@ We're going to follow the same application structure as in the "Local Access" ex
 #### App
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
 void main() => runApp(App());
 
@@ -360,7 +360,7 @@ Wrapping the entire `MaterialApp` in a `BlocProvider` is the key to making our `
 class CounterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final CounterBloc _counterBloc = BlocProvider.of<CounterBloc>(context);
+    final CounterBloc counterBloc = BlocProvider.of<CounterBloc>(context);
     return Scaffold(
       appBar: AppBar(title: Text('Counter')),
       body: Center(
@@ -375,7 +375,7 @@ class CounterPage extends StatelessWidget {
             child: FloatingActionButton(
               child: Icon(Icons.add),
               onPressed: () {
-                _counterBloc.dispatch(CounterEvent.increment);
+                counterBloc.dispatch(CounterEvent.increment);
               },
             ),
           ),
@@ -384,7 +384,7 @@ class CounterPage extends StatelessWidget {
             child: FloatingActionButton(
               child: Icon(Icons.remove),
               onPressed: () {
-                _counterBloc.dispatch(CounterEvent.decrement);
+                counterBloc.dispatch(CounterEvent.decrement);
               },
             ),
           ),

@@ -73,8 +73,8 @@ class DataBloc extends Bloc<DataEvent, DataState> {
 Now let's take a look at how to hook up our `DataBloc` to a widget and show a `SnackBar` in response to a success state.
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
 void main() => runApp(MyApp());
 
@@ -93,10 +93,11 @@ class MyApp extends StatelessWidget {
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final dataBloc = BlocProvider.of<DataBloc>(context);
     return Scaffold(
       appBar: AppBar(title: Text('Home')),
       body: BlocListener(
-        bloc: BlocProvider.of<DataBloc>(context),
+        bloc: dataBloc,
         listener: (BuildContext context, DataState state) {
           if (state is Success) {
             Scaffold.of(context).showSnackBar(
@@ -108,7 +109,7 @@ class Home extends StatelessWidget {
           }
         },
         child: BlocBuilder(
-          bloc: BlocProvider.of<DataBloc>(context),
+          bloc: dataBloc,
           builder: (BuildContext context, DataState state) {
             if (state is Initial) {
               return Center(child: Text('Press the Button'));
@@ -129,7 +130,7 @@ class Home extends StatelessWidget {
           FloatingActionButton(
             child: Icon(Icons.play_arrow),
             onPressed: () {
-              BlocProvider.of<DataBloc>(context).dispatch(FetchData());
+              dataBloc.dispatch(FetchData());
             },
           ),
         ],

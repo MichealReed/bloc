@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {
   @override
@@ -28,14 +28,14 @@ class SimpleBlocDelegate extends BlocDelegate {
 void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
   runApp(
-    BlocProviderTree(
-      blocProviders: [
+    MultiBlocProvider(
+      providers: [
         BlocProvider<CounterBloc>(
           builder: (context) => CounterBloc(),
         ),
         BlocProvider<ThemeBloc>(
           builder: (context) => ThemeBloc(),
-        )
+        ),
       ],
       child: App(),
     ),

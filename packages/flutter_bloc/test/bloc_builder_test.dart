@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_test/flutter_test.dart';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
 class MyThemeApp extends StatefulWidget {
   final Bloc<ThemeEvent, ThemeData> _themeBloc;

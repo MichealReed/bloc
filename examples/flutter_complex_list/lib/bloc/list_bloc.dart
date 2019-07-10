@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:flutter_complex_list/repository.dart';
-import 'package:flutter_complex_list/models/models.dart';
-import 'package:flutter_complex_list/bloc/bloc.dart';
+import 'package:flutter_web_complex_list/repository.dart';
+import 'package:flutter_web_complex_list/models/models.dart';
+import 'package:flutter_web_complex_list/bloc/bloc.dart';
 
 class ListBloc extends Bloc<ListEvent, ListState> {
   final Repository repository;

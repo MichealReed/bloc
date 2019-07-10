@@ -28,7 +28,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc: ^0.18.0
+  flutter_bloc: ^0.19.0
   equatable: ^0.2.0
   wave: ^0.0.8
 
@@ -192,7 +192,7 @@ If you haven’t already, create `bloc/timer_bloc.dart` and create a empty `Time
 
 ```dart
 import 'package:bloc/bloc.dart';
-import 'package:flutter_timer/bloc/bloc.dart';
+import 'package:flutter_web_timer/bloc/bloc.dart';
 
 class TimerBloc extends Bloc<TimerEvent, TimerState> {
   @override
@@ -211,7 +211,7 @@ The first thing we need to do is define the `initialState` of our `TimerBloc`. I
 
 ```dart
 import 'package:bloc/bloc.dart';
-import 'package:flutter_timer/bloc/bloc.dart';
+import 'package:flutter_web_timer/bloc/bloc.dart';
 
 class TimerBloc extends Bloc<TimerEvent, TimerState> {
   final int _duration = 60;
@@ -234,8 +234,8 @@ Next, we need to define the dependency on our `Ticker`.
 import 'dart:async';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_timer/bloc/bloc.dart';
-import 'package:flutter_timer/ticker.dart';
+import 'package:flutter_web_timer/bloc/bloc.dart';
+import 'package:flutter_web_timer/ticker.dart';
 
 class TimerBloc extends Bloc<TimerEvent, TimerState> {
   final Ticker _ticker;
@@ -267,8 +267,8 @@ At this point, all that’s left to do is implement `mapEventToState`. For impro
 import 'dart:async';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_timer/bloc/bloc.dart';
-import 'package:flutter_timer/ticker.dart';
+import 'package:flutter_web_timer/bloc/bloc.dart';
+import 'package:flutter_web_timer/ticker.dart';
 
 class TimerBloc extends Bloc<TimerEvent, TimerState> {
   final Ticker _ticker;
@@ -318,8 +318,8 @@ Next, let’s implement the `Tick` event handler.
 import 'dart:async';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_timer/bloc/bloc.dart';
-import 'package:flutter_timer/ticker.dart';
+import 'package:flutter_web_timer/bloc/bloc.dart';
+import 'package:flutter_web_timer/ticker.dart';
 
 class TimerBloc extends Bloc<TimerEvent, TimerState> {
   final Ticker _ticker;
@@ -375,8 +375,8 @@ Now let’s implement the `Pause` event handler.
 import 'dart:async';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_timer/bloc/bloc.dart';
-import 'package:flutter_timer/ticker.dart';
+import 'package:flutter_web_timer/bloc/bloc.dart';
+import 'package:flutter_web_timer/ticker.dart';
 
 class TimerBloc extends Bloc<TimerEvent, TimerState> {
   final Ticker _ticker;
@@ -442,8 +442,8 @@ Next, let’s implement the `Resume` event handler so that we can unpause the ti
 import 'dart:async';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_timer/bloc/bloc.dart';
-import 'package:flutter_timer/ticker.dart';
+import 'package:flutter_web_timer/bloc/bloc.dart';
+import 'package:flutter_web_timer/ticker.dart';
 
 class TimerBloc extends Bloc<TimerEvent, TimerState> {
   final Ticker _ticker;
@@ -519,8 +519,8 @@ Lastly, we need to implement the `Reset` event handler.
 import 'dart:async';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_timer/bloc/bloc.dart';
-import 'package:flutter_timer/ticker.dart';
+import 'package:flutter_web_timer/bloc/bloc.dart';
+import 'package:flutter_web_timer/ticker.dart';
 
 class TimerBloc extends Bloc<TimerEvent, TimerState> {
   final Ticker _ticker;
@@ -620,10 +620,10 @@ That’s all there is to the `TimerBloc`. Now all that’s left is implement the
 We can start off by deleting the contents of `main.dart` and creating our `MyApp` widget which will be the root of our application.
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_timer/bloc/bloc.dart';
-import 'package:flutter_timer/ticker.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
+import 'package:flutter_web_timer/bloc/bloc.dart';
+import 'package:flutter_web_timer/ticker.dart';
 
 void main() => runApp(MyApp());
 
@@ -834,7 +834,7 @@ Lastly, we need to add the super cool wave background using the [wave](https://p
 ### Waves Background
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 import 'package:wave/wave.dart';
 import 'package:wave/config.dart';
 
@@ -878,22 +878,16 @@ class Background extends StatelessWidget {
 Our finished, `main.dart` should look like:
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_timer/bloc/bloc.dart';
-import 'package:flutter_timer/ticker.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
+import 'package:flutter_web_timer/bloc/bloc.dart';
+import 'package:flutter_web_timer/ticker.dart';
 import 'package:wave/wave.dart';
 import 'package:wave/config.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatefulWidget {
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  final TimerBloc _timerBloc = TimerBloc(ticker: Ticker());
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -904,16 +898,10 @@ class _MyAppState extends State<MyApp> {
       ),
       title: 'Flutter Timer',
       home: BlocProvider(
-        bloc: _timerBloc,
+        builder: (context) => TimerBloc(ticker: Ticker()),
         child: Timer(),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _timerBloc.dispose();
-    super.dispose();
   }
 }
 

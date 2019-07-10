@@ -28,7 +28,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc: ^0.18.0
+  flutter_bloc: ^0.19.0
   http: ^0.12.0
   equatable: ^0.2.0
 
@@ -487,7 +487,7 @@ Future<Weather> fetchWeather(int locationId) async {
 Here again we are just making a simple HTTP request and decoding the response into JSON. You'll notice we again need to import a dependency, this time our `Weather` model. At the top of the file, go ahead and import it like so:
 
 ```dart
-import 'package:flutter_weather/models/models.dart';
+import 'package:flutter_web_weather/models/models.dart';
 ```
 
 #### Export WeatherApiClient
@@ -515,8 +515,8 @@ import 'dart:async';
 
 import 'package:meta/meta.dart';
 
-import 'package:flutter_weather/repositories/weather_api_client.dart';
-import 'package:flutter_weather/models/models.dart';
+import 'package:flutter_web_weather/repositories/weather_api_client.dart';
+import 'package:flutter_web_weather/models/models.dart';
 
 class WeatherRepository {
   final WeatherApiClient weatherApiClient;
@@ -595,7 +595,7 @@ We can represent these states like so:
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:flutter_weather/models/models.dart';
+import 'package:flutter_web_weather/models/models.dart';
 
 abstract class WeatherState extends Equatable {
   WeatherState([List props = const []]) : super(props);
@@ -634,9 +634,9 @@ Go ahead and create a file inside of the `blocs` folder called `weather_bloc.dar
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 
-import 'package:flutter_weather/repositories/repositories.dart';
-import 'package:flutter_weather/models/models.dart';
-import 'package:flutter_weather/blocs/blocs.dart';
+import 'package:flutter_web_weather/repositories/repositories.dart';
+import 'package:flutter_web_weather/models/models.dart';
+import 'package:flutter_web_weather/blocs/blocs.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   final WeatherRepository weatherRepository;
@@ -704,7 +704,7 @@ void main() {
 Lastly, we need to create our `WeatherRepository` and inject it into our `App` widget (which we will create in the next step).
 
 ```dart
-import 'package:flutter_weather/repositories/repositories.dart';
+import 'package:flutter_web_weather/repositories/repositories.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -755,12 +755,12 @@ Now we need to create our `Weather` Widget. Go ahead and make a folder called `w
 #### Creating Our Stateless Widget
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
-import 'package:flutter_weather/widgets/widgets.dart';
-import 'package:flutter_weather/blocs/blocs.dart';
+import 'package:flutter_web_weather/widgets/widgets.dart';
+import 'package:flutter_web_weather/blocs/blocs.dart';
 
 class Weather extends StatelessWidget {
   @override
@@ -848,7 +848,7 @@ Go ahead and create a file called `location.dart` inside of the `widgets` folder
 > Our `Location` widget is simple; it displays the current location.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 class Location extends StatelessWidget {
   final String location;
@@ -880,7 +880,7 @@ Next up create a `last_updated.dart` file inside the `widgets` folder.
 > Our `LastUpdated` widget is also super simple; it displays the last updated time so that users know how fresh the weather data is.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 class LastUpdated extends StatelessWidget {
   final DateTime dateTime;
@@ -914,10 +914,10 @@ Next up create a `combined_weather_temperature.dart` file inside the `widgets` f
 > The `CombinedWeatherTemperature` widget is a compositional widget which displays the current weather along with the temperature. We are still going to modularize the `Temperature` and `WeatherConditions` widgets so that they can all be reused.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
-import 'package:flutter_weather/models/models.dart' as model;
-import 'package:flutter_weather/widgets/widgets.dart';
+import 'package:flutter_web_weather/models/models.dart' as model;
+import 'package:flutter_web_weather/widgets/widgets.dart';
 
 class CombinedWeatherTemperature extends StatelessWidget {
   final model.Weather weather;
@@ -976,9 +976,9 @@ Next up create a `weather_conditions.dart` file inside the `widgets` folder.
 > Our `WeatherConditions` widget will be responsible for displaying the current weather conditions (clear, showers, thunderstorms, etc...) along with a matching icon.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
-import 'package:flutter_weather/models/models.dart';
+import 'package:flutter_web_weather/models/models.dart';
 
 class WeatherConditions extends StatelessWidget {
   final WeatherCondition condition;
@@ -1035,7 +1035,7 @@ Next up create a `temperature.dart` file inside the `widgets` folder.
 > Our `Temperature` widget will be responsible for displaying the average, min, and max temperatures.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 class Temperature extends StatelessWidget {
   final double temperature;
@@ -1101,7 +1101,7 @@ The last thing we need to implement to have a functional app is out `CitySelecti
 > The `CitySelection` widget will allow users to input a city name and pass the selected city back to the `App` widget.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 class CitySelection extends StatefulWidget {
   @override
@@ -1156,7 +1156,7 @@ Make sure to export this in the `widgets.dart` file.
 
 Now that we have created all our widgets, let's go back to the `main.dart` file. You'll see we need to import our `Weather` widget, so go ahead and add this line up top.
 
-`import 'package:flutter_weather/widgets/widgets.dart';`
+`import 'package:flutter_web_weather/widgets/widgets.dart';`
 
 Then you can go ahead and run the app with `flutter run` in the terminal. Go ahead and select a city and you'll notice it has a few problems:
 
@@ -1433,7 +1433,7 @@ class App extends StatelessWidget {
 The last thing we need to do is create a cool `GradientContainer` widget which will color our background with respect to the current weather conditions.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 import 'package:meta/meta.dart';
 
@@ -1474,13 +1474,13 @@ Now we can use our `GradientContainer` in our `Weather` widget like so:
 ```dart
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
-import 'package:flutter_weather/widgets/widgets.dart';
-import 'package:flutter_weather/repositories/repositories.dart';
-import 'package:flutter_weather/blocs/blocs.dart';
+import 'package:flutter_web_weather/widgets/widgets.dart';
+import 'package:flutter_web_weather/repositories/repositories.dart';
+import 'package:flutter_web_weather/blocs/blocs.dart';
 
 class Weather extends StatefulWidget {
   @override
@@ -1669,8 +1669,8 @@ void main() {
   );
   BlocSupervisor.delegate = SimpleBlocDelegate();
   runApp(
-    BlocProviderTree(
-      blocProviders: [
+    MultiBlocProvider(
+      providers: [
         BlocProvider<ThemeBloc>(
           builder: (context) => ThemeBloc(),
         ),
@@ -1684,16 +1684,16 @@ void main() {
 }
 ```
 
-Again, we're making `SettingsBloc` globally accessible using `BlocProvider` and we are also disposing it in the `dispose` callback. This time, however, since we are exposing more than one Bloc using `BlocProvider` at the same level we can eliminate some nesting by using the `BlocProviderTree` widget.
+Again, we're making `SettingsBloc` globally accessible using `BlocProvider` and we are also disposing it in the `dispose` callback. This time, however, since we are exposing more than one Bloc using `BlocProvider` at the same level we can eliminate some nesting by using the `MultiBlocProvider` widget.
 
 Now we need to create our `Settings` widget from which users can toggle the units.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
-import 'package:flutter_weather/blocs/blocs.dart';
+import 'package:flutter_web_weather/blocs/blocs.dart';
 
 class Settings extends StatelessWidget {
   @override
@@ -1740,13 +1740,13 @@ We can do that by adding a new `IconButton` in our `AppBar`.
 ```dart
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
-import 'package:flutter_weather/widgets/widgets.dart';
-import 'package:flutter_weather/repositories/repositories.dart';
-import 'package:flutter_weather/blocs/blocs.dart';
+import 'package:flutter_web_weather/widgets/widgets.dart';
+import 'package:flutter_web_weather/repositories/repositories.dart';
+import 'package:flutter_web_weather/blocs/blocs.dart';
 
 class Weather extends StatefulWidget {
   @override
@@ -1876,9 +1876,9 @@ class _WeatherState extends State<Weather> {
 We're almost done! We just need to update our `Temperature` widget to respond to the current units.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
-import 'package:flutter_weather/blocs/blocs.dart';
+import 'package:flutter_web_weather/blocs/blocs.dart';
 
 class Temperature extends StatelessWidget {
   final double temperature;
@@ -1943,14 +1943,14 @@ class Temperature extends StatelessWidget {
 And lastly, we need to inject the `TemperatureUnits` into the `Temperature` widget.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 import 'package:meta/meta.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
-import 'package:flutter_weather/blocs/blocs.dart';
-import 'package:flutter_weather/models/models.dart' as model;
-import 'package:flutter_weather/widgets/widgets.dart';
+import 'package:flutter_web_weather/blocs/blocs.dart';
+import 'package:flutter_web_weather/models/models.dart' as model;
+import 'package:flutter_web_weather/widgets/widgets.dart';
 
 class CombinedWeatherTemperature extends StatelessWidget {
   final model.Weather weather;

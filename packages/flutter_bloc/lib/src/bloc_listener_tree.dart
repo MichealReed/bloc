@@ -1,7 +1,5 @@
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'tree_buildable.dart';
+import 'package:flutter_web_web/widgets.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
 /// A Flutter [Widget] that merges multiple [BlocListener] widgets into one widget tree.
 ///
@@ -52,7 +50,7 @@ import 'tree_buildable.dart';
 /// into a tree of nested [BlocListener] widgets.
 /// As a result, the only advantage of using [BlocListenerTree] is improved
 /// readability due to the reduction in nesting and boilerplate.
-class BlocListenerTree extends TreeBuildable<BlocListener> {
+class BlocListenerTree extends StatelessWidget {
   /// The [BlocListener] list which is converted into a tree of [BlocListener] widgets.
   /// The tree of [BlocListener] widgets is created in order meaning the first [BlocListener]
   /// will be the top-most [BlocListener] and the last [BlocListener] will be a direct ancestor
@@ -66,5 +64,16 @@ class BlocListenerTree extends TreeBuildable<BlocListener> {
     Key key,
     @required this.blocListeners,
     @required this.child,
-  }) : super(key: key, copyables: blocListeners, child: child);
+  })  : assert(blocListeners != null),
+        assert(child != null),
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Widget tree = child;
+    for (final blocListener in blocListeners.reversed) {
+      tree = blocListener.copyWith(tree);
+    }
+    return tree;
+  }
 }

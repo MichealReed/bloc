@@ -31,7 +31,7 @@ dependencies:
   cloud_firestore: ^0.9.7
   firebase_auth: ^0.8.1+4
   google_sign_in: ^4.0.1+1
-  flutter_bloc: ^0.18.0
+  flutter_bloc: ^0.19.0
   equatable: ^0.2.0
   meta: ^1.1.6
   font_awesome_flutter: ^8.4.0
@@ -329,8 +329,8 @@ We'll start off by creating our `AuthenticationBloc` class.
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:flutter_firebase_login/authentication_bloc/bloc.dart';
-import 'package:flutter_firebase_login/user_repository.dart';
+import 'package:flutter_web_firebase_login/authentication_bloc/bloc.dart';
+import 'package:flutter_web_firebase_login/user_repository.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
@@ -402,8 +402,8 @@ Our complete `authentication_bloc.dart` should now look like this:
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:flutter_firebase_login/authentication_bloc/bloc.dart';
-import 'package:flutter_firebase_login/user_repository.dart';
+import 'package:flutter_web_firebase_login/authentication_bloc/bloc.dart';
+import 'package:flutter_web_firebase_login/user_repository.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
@@ -461,11 +461,11 @@ Now that we have our `AuthenticationBloc` fully implemented, let’s get to work
 We'll start by removing everything from out `main.dart` and implementing our main function.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_firebase_login/authentication_bloc/bloc.dart';
-import 'package:flutter_firebase_login/user_repository.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
+import 'package:flutter_web_firebase_login/authentication_bloc/bloc.dart';
+import 'package:flutter_web_firebase_login/user_repository.dart';
 
 void main() {
   final UserRepository userRepository = UserRepository();
@@ -488,11 +488,11 @@ Next we need to implement our `App` widget.
 > `App` will be a `StatelessWidget` and be responsible for reacting to the `AuthenticationBloc` state and rendering the appropriate widget.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_firebase_login/authentication_bloc/bloc.dart';
-import 'package:flutter_firebase_login/user_repository.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
+import 'package:flutter_web_firebase_login/authentication_bloc/bloc.dart';
+import 'package:flutter_web_firebase_login/user_repository.dart';
 
 void main() {
   final UserRepository userRepository = UserRepository();
@@ -564,7 +564,7 @@ class SimpleBlocDelegate extends BlocDelegate {
 Now we can hook up our `BlocDelegate` in our `main.dart`.
 
 ```dart
-import 'package:flutter_firebase_login/simple_bloc_delegate.dart';
+import 'package:flutter_web_firebase_login/simple_bloc_delegate.dart';
 
 void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
@@ -586,7 +586,7 @@ Next, we’ll need to make a `SplashScreen` widget which will be rendered while 
 Let's create `splash_screen.dart` and implement it!
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 class SplashScreen extends StatelessWidget {
   @override
@@ -603,13 +603,13 @@ As you can tell, this widget is super minimal and you would probably want to add
 Now, let's hook it up to our `main.dart`.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_firebase_login/authentication_bloc/bloc.dart';
-import 'package:flutter_firebase_login/user_repository.dart';
-import 'package:flutter_firebase_login/splash_screen.dart';
-import 'package:flutter_firebase_login/simple_bloc_delegate.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
+import 'package:flutter_web_firebase_login/authentication_bloc/bloc.dart';
+import 'package:flutter_web_firebase_login/user_repository.dart';
+import 'package:flutter_web_firebase_login/splash_screen.dart';
+import 'package:flutter_web_firebase_login/simple_bloc_delegate.dart';
 
 void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
@@ -657,9 +657,9 @@ Next, we will need to create our `HomeScreen` so that we can navigate users ther
 Let's create `home_screen.dart` and get started.
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_firebase_login/authentication_bloc/bloc.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
+import 'package:flutter_web_firebase_login/authentication_bloc/bloc.dart';
 
 class HomeScreen extends StatelessWidget {
   final String name;
@@ -698,14 +698,14 @@ class HomeScreen extends StatelessWidget {
 Now let's update our `App` to render the `HomeScreen` if the `AuthenticationState` is `Authentication`.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_firebase_login/authentication_bloc/bloc.dart';
-import 'package:flutter_firebase_login/user_repository.dart';
-import 'package:flutter_firebase_login/home_screen.dart';
-import 'package:flutter_firebase_login/splash_screen.dart';
-import 'package:flutter_firebase_login/simple_bloc_delegate.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
+import 'package:flutter_web_firebase_login/authentication_bloc/bloc.dart';
+import 'package:flutter_web_firebase_login/user_repository.dart';
+import 'package:flutter_web_firebase_login/home_screen.dart';
+import 'package:flutter_web_firebase_login/splash_screen.dart';
+import 'package:flutter_web_firebase_login/simple_bloc_delegate.dart';
 
 void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();
@@ -976,9 +976,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:flutter_firebase_login/login/login.dart';
-import 'package:flutter_firebase_login/user_repository.dart';
-import 'package:flutter_firebase_login/validators.dart';
+import 'package:flutter_web_firebase_login/login/login.dart';
+import 'package:flutter_web_firebase_login/user_repository.dart';
+import 'package:flutter_web_firebase_login/validators.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   UserRepository _userRepository;
@@ -1094,10 +1094,10 @@ Now that we're finished the `LoginBloc` it's time to create our `LoginScreen` wi
 Create `login/login_screen.dart` and let's implement it.
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_firebase_login/user_repository.dart';
-import 'package:flutter_firebase_login/login/login.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
+import 'package:flutter_web_firebase_login/user_repository.dart';
+import 'package:flutter_web_firebase_login/login/login.dart';
 
 class LoginScreen extends StatelessWidget {
   final UserRepository _userRepository;
@@ -1130,11 +1130,11 @@ At this point, we need to implement the `LoginForm` widget which will be respons
 Create `login/login_form.dart` and let's build out our form.
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_firebase_login/user_repository.dart';
-import 'package:flutter_firebase_login/authentication_bloc/bloc.dart';
-import 'package:flutter_firebase_login/login/login.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
+import 'package:flutter_web_firebase_login/user_repository.dart';
+import 'package:flutter_web_firebase_login/authentication_bloc/bloc.dart';
+import 'package:flutter_web_firebase_login/login/login.dart';
 
 class LoginForm extends StatefulWidget {
   final UserRepository _userRepository;
@@ -1317,7 +1317,7 @@ At this point, you'll notice we haven't implemented `LoginButton`, `GoogleLoginB
 Create `login/login_button.dart` and let's quickly implement our `LoginButton` widget.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 class LoginButton extends StatelessWidget {
   final VoidCallback _onPressed;
@@ -1346,9 +1346,9 @@ There's nothing special going on here; just a `StatelessWidget` which has some s
 Create `login/google_login_button.dart` and let's get to work on our Google Sign In.
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_firebase_login/login/login.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
+import 'package:flutter_web_firebase_login/login/login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class GoogleLoginButton extends StatelessWidget {
@@ -1380,9 +1380,9 @@ Again, there's not too much going on here. We have another `StatelessWidget`; ho
 The last of the three buttons is the `CreateAccountButton`. Let's create `login/create_account_button.dart` and get to work.
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_firebase_login/user_repository.dart';
-import 'package:flutter_firebase_login/register/register.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_firebase_login/user_repository.dart';
+import 'package:flutter_web_firebase_login/register/register.dart';
 
 class CreateAccountButton extends StatelessWidget {
   final UserRepository _userRepository;
@@ -1606,9 +1606,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:flutter_firebase_login/user_repository.dart';
-import 'package:flutter_firebase_login/register/register.dart';
-import 'package:flutter_firebase_login/validators.dart';
+import 'package:flutter_web_firebase_login/user_repository.dart';
+import 'package:flutter_web_firebase_login/register/register.dart';
+import 'package:flutter_web_firebase_login/validators.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final UserRepository _userRepository;
@@ -1689,10 +1689,10 @@ Similar to the `LoginScreen`, our `RegisterScreen` will be a `StatelessWidget` r
 Create `register/register_screen.dart` and let's implement it.
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_firebase_login/user_repository.dart';
-import 'package:flutter_firebase_login/register/register.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
+import 'package:flutter_web_firebase_login/user_repository.dart';
+import 'package:flutter_web_firebase_login/register/register.dart';
 
 class RegisterScreen extends StatelessWidget {
   final UserRepository _userRepository;
@@ -1725,10 +1725,10 @@ Next, let's create the `RegisterForm` which will provide the form fields for a u
 Create `register/register_form.dart` and let's build it.
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_firebase_login/authentication_bloc/bloc.dart';
-import 'package:flutter_firebase_login/register/register.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
+import 'package:flutter_web_firebase_login/authentication_bloc/bloc.dart';
+import 'package:flutter_web_firebase_login/register/register.dart';
 
 class RegisterForm extends StatefulWidget {
   State<RegisterForm> createState() => _RegisterFormState();
@@ -1884,7 +1884,7 @@ Let's build our `RegisterButton` widget next.
 Create `register/register_button.dart` and let's get started.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 class RegisterButton extends StatelessWidget {
   final VoidCallback _onPressed;
@@ -1911,15 +1911,15 @@ Very similar to how we setup the `LoginButton`, the `RegisterButton` has some cu
 All that's left to do is update our `App` widget in `main.dart` to show the `LoginScreen` if the `AuthenticationState` is `Unauthenticated`.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_firebase_login/authentication_bloc/bloc.dart';
-import 'package:flutter_firebase_login/user_repository.dart';
-import 'package:flutter_firebase_login/home_screen.dart';
-import 'package:flutter_firebase_login/login/login.dart';
-import 'package:flutter_firebase_login/splash_screen.dart';
-import 'package:flutter_firebase_login/simple_bloc_delegate.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
+import 'package:flutter_web_firebase_login/authentication_bloc/bloc.dart';
+import 'package:flutter_web_firebase_login/user_repository.dart';
+import 'package:flutter_web_firebase_login/home_screen.dart';
+import 'package:flutter_web_firebase_login/login/login.dart';
+import 'package:flutter_web_firebase_login/splash_screen.dart';
+import 'package:flutter_web_firebase_login/simple_bloc_delegate.dart';
 
 void main() {
   BlocSupervisor.delegate = SimpleBlocDelegate();

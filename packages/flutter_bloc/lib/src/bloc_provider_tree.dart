@@ -1,7 +1,5 @@
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'tree_buildable.dart';
+import 'package:flutter_web_web/widgets.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
 /// A Flutter [Widget] that merges multiple [BlocProvider] widgets into one widget tree.
 ///
@@ -12,11 +10,11 @@ import 'tree_buildable.dart';
 ///
 /// ```dart
 /// BlocProvider<BlocA>(
-///   builder: (BuildContext context) => BlocA(),
+///   bloc: BlocA(),
 ///   child: BlocProvider<BlocB>(
-///     builder: (BuildContext context) => BlocB(),
+///     bloc: BlocB(),
 ///     child: BlocProvider<BlocC>(
-///       builder: (BuildContext context) => BlocC(),
+///       value: BlocC(),
 ///       child: ChildA(),
 ///     )
 ///   )
@@ -28,15 +26,9 @@ import 'tree_buildable.dart';
 /// ```dart
 /// BlocProviderTree(
 ///   blocProviders: [
-///     BlocProvider<BlocA>(
-///       builder: (BuildContext context) => BlocA(),
-///     ),
-///     BlocProvider<BlocB>(
-///       builder: (BuildContext context) => BlocB(),
-///     ),
-///     BlocProvider<BlocC>(
-///       builder: (BuildContext context) => BlocC(),
-///     ),
+///     BlocProvider<BlocA>(bloc: BlocA()),
+///     BlocProvider<BlocB>(bloc: BlocB()),
+///     BlocProvider<BlocC>(bloc: BlocC()),
 ///   ],
 ///   child: ChildA(),
 /// )
@@ -46,7 +38,7 @@ import 'tree_buildable.dart';
 /// into a tree of nested [BlocProvider] widgets.
 /// As a result, the only advantage of using [BlocProviderTree] is improved
 /// readability due to the reduction in nesting and boilerplate.
-class BlocProviderTree extends TreeBuildable<BlocProvider> {
+class BlocProviderTree extends StatelessWidget {
   /// The [BlocProvider] list which is converted into a tree of [BlocProvider] widgets.
   /// The tree of [BlocProvider] widgets is created in order meaning the first [BlocProvider]
   /// will be the top-most [BlocProvider] and the last [BlocProvider] will be a direct ancestor
@@ -61,5 +53,16 @@ class BlocProviderTree extends TreeBuildable<BlocProvider> {
     Key key,
     @required this.blocProviders,
     @required this.child,
-  }) : super(key: key, copyables: blocProviders, child: child);
+  })  : assert(blocProviders != null),
+        assert(child != null),
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Widget tree = child;
+    for (final blocProvider in blocProviders.reversed) {
+      tree = blocProvider.copyWith(tree);
+    }
+    return tree;
+  }
 }
