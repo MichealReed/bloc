@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 class LoginButton extends StatelessWidget {
   final VoidCallback _onPressed;

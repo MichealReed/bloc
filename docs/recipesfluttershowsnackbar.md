@@ -73,8 +73,8 @@ class DataBloc extends Bloc<DataEvent, DataState> {
 Now let's take a look at how to hook up our `DataBloc` to a widget and show a `SnackBar` in response to a success state.
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
 void main() => runApp(MyApp());
 

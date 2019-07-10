@@ -2,9 +2,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:flutter_firebase_login/user_repository.dart';
-import 'package:flutter_firebase_login/register/register.dart';
-import 'package:flutter_firebase_login/validators.dart';
+import 'package:flutter_web_firebase_login/user_repository.dart';
+import 'package:flutter_web_firebase_login/register/register.dart';
+import 'package:flutter_web_firebase_login/validators.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final UserRepository _userRepository;

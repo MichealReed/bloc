@@ -44,9 +44,9 @@ We're going to have 3 parts to our UI:
 #### App
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
 void main() => runApp(App());
 
@@ -173,9 +173,9 @@ Again, we're going to have three parts to our application's UI:
 #### App
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
 void main() => runApp(App());
 
@@ -328,9 +328,9 @@ We're going to follow the same application structure as in the "Local Access" ex
 #### App
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
 void main() => runApp(App());
 

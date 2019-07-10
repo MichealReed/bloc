@@ -1,13 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 import 'package:todos_repository_simple/todos_repository_simple.dart';
 import 'package:todos_app_core/todos_app_core.dart';
-import 'package:flutter_todos/localization.dart';
-import 'package:flutter_todos/blocs/blocs.dart';
-import 'package:flutter_todos/models/models.dart';
-import 'package:flutter_todos/screens/screens.dart';
+import 'package:flutter_web_todos/localization.dart';
+import 'package:flutter_web_todos/blocs/blocs.dart';
+import 'package:flutter_web_todos/models/models.dart';
+import 'package:flutter_web_todos/screens/screens.dart';
 
 void main() {
   // BlocSupervisor oversees Blocs and delegates to BlocDelegate.

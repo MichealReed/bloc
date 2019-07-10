@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_firebase_login/authentication_bloc/bloc.dart';
-import 'package:flutter_firebase_login/register/register.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
+import 'package:flutter_web_firebase_login/authentication_bloc/bloc.dart';
+import 'package:flutter_web_firebase_login/register/register.dart';
 
 class RegisterForm extends StatefulWidget {
   State<RegisterForm> createState() => _RegisterFormState();

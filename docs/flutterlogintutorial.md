@@ -240,7 +240,7 @@ import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 import 'package:user_repository/user_repository.dart';
 
-import 'package:flutter_login/authentication/authentication.dart';
+import 'package:flutter_web_login/authentication/authentication.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
@@ -288,7 +288,7 @@ Now that we have our `AuthenticationBloc` fully implemented, let’s get to work
 The first thing we’ll need is a `SplashPage` widget which will serve as our Splash Screen while our `AuthenticationBloc` determines whether or not a user is logged in.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 class SplashPage extends StatelessWidget {
   @override
@@ -307,11 +307,11 @@ class SplashPage extends StatelessWidget {
 Next, we will need to create our `HomePage` so that we can navigate users there once they have successfully logged in.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
-import 'package:flutter_login/authentication/authentication.dart';
+import 'package:flutter_web_login/authentication/authentication.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -423,8 +423,8 @@ import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 import 'package:user_repository/user_repository.dart';
 
-import 'package:flutter_login/authentication/authentication.dart';
-import 'package:flutter_login/login/login.dart';
+import 'package:flutter_web_login/authentication/authentication.dart';
+import 'package:flutter_web_login/login/login.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final UserRepository userRepository;
@@ -470,13 +470,13 @@ Now that we have our `LoginBloc` we can start working on `LoginPage` and `LoginF
 The `LoginPage` widget will serve as our container widget and will provide the necessary dependencies to the `LoginForm` widget (`LoginBloc` and `AuthenticationBloc`).
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 import 'package:user_repository/user_repository.dart';
 
-import 'package:flutter_login/authentication/authentication.dart';
-import 'package:flutter_login/login/login.dart';
+import 'package:flutter_web_login/authentication/authentication.dart';
+import 'package:flutter_web_login/login/login.dart';
 
 class LoginPage extends StatelessWidget {
   final UserRepository userRepository;
@@ -516,9 +516,9 @@ Next up, let’s go ahead and create our `LoginForm`.
 ## Login Form
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_login/login/login.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
+import 'package:flutter_web_login/login/login.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -597,7 +597,7 @@ There’s not much else going on in the `LoginForm` widget so let's move on to c
 ## Loading Indicator
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 class LoadingIndicator extends StatelessWidget {
   @override
@@ -612,17 +612,17 @@ Now it’s finally time to put it all together and create our main App widget in
 ## Putting it all together
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 import 'package:user_repository/user_repository.dart';
 
-import 'package:flutter_login/authentication/authentication.dart';
-import 'package:flutter_login/splash/splash.dart';
-import 'package:flutter_login/login/login.dart';
-import 'package:flutter_login/home/home.dart';
-import 'package:flutter_login/common/common.dart';
+import 'package:flutter_web_login/authentication/authentication.dart';
+import 'package:flutter_web_login/splash/splash.dart';
+import 'package:flutter_web_login/login/login.dart';
+import 'package:flutter_web_login/home/home.dart';
+import 'package:flutter_web_login/common/common.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {
   @override

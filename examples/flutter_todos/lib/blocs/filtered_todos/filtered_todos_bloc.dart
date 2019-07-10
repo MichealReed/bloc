@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:flutter_todos/blocs/filtered_todos/filtered_todos.dart';
-import 'package:flutter_todos/blocs/todos/todos.dart';
-import 'package:flutter_todos/models/models.dart';
+import 'package:flutter_web_todos/blocs/filtered_todos/filtered_todos.dart';
+import 'package:flutter_web_todos/blocs/todos/todos.dart';
+import 'package:flutter_web_todos/models/models.dart';
 
 class FilteredTodosBloc extends Bloc<FilteredTodosEvent, FilteredTodosState> {
   final TodosBloc todosBloc;

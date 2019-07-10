@@ -65,8 +65,8 @@ class MyBloc extends Bloc<MyEvent, MyState> {
 Now let's take a look at how to hook up our `MyBloc` to a widget and show a different page based on the bloc state.
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(
@@ -156,8 +156,8 @@ We're going to reuse the same `MyBloc` from the previous example.
 Let's take a look at how to route to a different page based on the state of `MyBloc`.
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(

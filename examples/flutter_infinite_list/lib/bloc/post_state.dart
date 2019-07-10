@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:flutter_infinite_list/models/models.dart';
+import 'package:flutter_web_infinite_list/models/models.dart';
 
 abstract class PostState extends Equatable {
   PostState([List props = const []]) : super(props);

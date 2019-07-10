@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
-import 'package:flutter_weather/widgets/widgets.dart';
-import 'package:flutter_weather/repositories/repositories.dart';
-import 'package:flutter_weather/blocs/blocs.dart';
+import 'package:flutter_web_weather/widgets/widgets.dart';
+import 'package:flutter_web_weather/repositories/repositories.dart';
+import 'package:flutter_web_weather/blocs/blocs.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {
   @override

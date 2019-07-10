@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 import 'package:meta/meta.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 
-import 'package:flutter_weather/blocs/blocs.dart';
-import 'package:flutter_weather/models/models.dart' as model;
-import 'package:flutter_weather/widgets/widgets.dart';
+import 'package:flutter_web_weather/blocs/blocs.dart';
+import 'package:flutter_web_weather/models/models.dart' as model;
+import 'package:flutter_web_weather/widgets/widgets.dart';
 
 class CombinedWeatherTemperature extends StatelessWidget {
   final model.Weather weather;

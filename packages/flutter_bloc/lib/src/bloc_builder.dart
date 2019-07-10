@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_web/widgets.dart';
+import 'package:flutter_web_web/widgets.dart';
 
 import 'package:bloc/bloc.dart';
 

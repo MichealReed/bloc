@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 class FlutterBlocLocalizations {
   static FlutterBlocLocalizations of(BuildContext context) {

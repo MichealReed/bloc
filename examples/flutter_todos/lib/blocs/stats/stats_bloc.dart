@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_todos/blocs/blocs.dart';
+import 'package:flutter_web_todos/blocs/blocs.dart';
 
 class StatsBloc extends Bloc<StatsEvent, StatsState> {
   final TodosBloc todosBloc;

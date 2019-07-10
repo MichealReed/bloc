@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:test/test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:flutter_weather/repositories/weather_repository.dart';
-import 'package:flutter_weather/models/weather.dart';
-import 'package:flutter_weather/blocs/weather_bloc.dart';
+import 'package:flutter_web_weather/repositories/weather_repository.dart';
+import 'package:flutter_web_weather/models/weather.dart';
+import 'package:flutter_web_weather/blocs/weather_bloc.dart';
 
 class MockWeatherRepository extends Mock implements WeatherRepository {}
 

@@ -63,7 +63,7 @@ flutter packages get
 Before we jump into the application code, let's create `flutter_todos_keys.dart`. This file will contain keys which we will use to uniquely identify important widgets. We can later write tests that find widgets based on keys.
 
 ```dart
-import 'package:flutter/widgets.dart';
+import 'package:flutter_web/widgets.dart';
 
 class FlutterTodosKeys {
   static final extraActionsPopupMenuButton =
@@ -90,7 +90,7 @@ One last concept that we will touch on before going into the application itself 
 ```dart
 import 'dart:async';
 
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 class FlutterBlocLocalizations {
   static FlutterBlocLocalizations of(BuildContext context) {
@@ -200,7 +200,7 @@ The three states we will implement are:
 ```dart
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:flutter_todos/models/models.dart';
+import 'package:flutter_web_todos/models/models.dart';
 
 @immutable
 abstract class TodosState extends Equatable {
@@ -247,7 +247,7 @@ Create `blocs/todos/todos_event.dart` and let's implement the events we describe
 ```dart
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:flutter_todos/models/models.dart';
+import 'package:flutter_web_todos/models/models.dart';
 
 @immutable
 abstract class TodosEvent extends Equatable {
@@ -307,8 +307,8 @@ Let's create `blocs/todos/todos_bloc.dart` and get started! We just need to impl
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:flutter_todos/blocs/todos/todos.dart';
-import 'package:flutter_todos/models/models.dart';
+import 'package:flutter_web_todos/blocs/todos/todos.dart';
+import 'package:flutter_web_todos/models/models.dart';
 import 'package:todos_repository_simple/todos_repository_simple.dart';
 
 class TodosBloc extends Bloc<TodosEvent, TodosState> {
@@ -458,7 +458,7 @@ Let's create `blocs/filtered_todos/filtered_todos_state.dart` and implement the 
 ```dart
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:flutter_todos/models/models.dart';
+import 'package:flutter_web_todos/models/models.dart';
 
 @immutable
 abstract class FilteredTodosState extends Equatable {
@@ -498,7 +498,7 @@ Create `blocs/filtered_todos/filtered_todos_event.dart` and let's implement the 
 ```dart
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:flutter_todos/models/models.dart';
+import 'package:flutter_web_todos/models/models.dart';
 
 @immutable
 abstract class FilteredTodosEvent extends Equatable {
@@ -536,9 +536,9 @@ Create `blocs/filtered_todos/filtered_todos_bloc.dart` and let's get started.
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:flutter_todos/blocs/filtered_todos/filtered_todos.dart';
-import 'package:flutter_todos/blocs/todos/todos.dart';
-import 'package:flutter_todos/models/models.dart';
+import 'package:flutter_web_todos/blocs/filtered_todos/filtered_todos.dart';
+import 'package:flutter_web_todos/blocs/todos/todos.dart';
+import 'package:flutter_web_todos/models/models.dart';
 
 class FilteredTodosBloc extends Bloc<FilteredTodosEvent, FilteredTodosState> {
   final TodosBloc todosBloc;
@@ -689,7 +689,7 @@ Create `blocs/stats/states_event.dart` and let's implement it.
 ```dart
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:flutter_todos/models/models.dart';
+import 'package:flutter_web_todos/models/models.dart';
 
 @immutable
 abstract class StatsEvent extends Equatable {
@@ -718,7 +718,7 @@ Create `blocs/stats/stats_bloc.dart` and let's get started.
 import 'dart:async';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_todos/blocs/blocs.dart';
+import 'package:flutter_web_todos/blocs/blocs.dart';
 
 class StatsBloc extends Bloc<StatsEvent, StatsState> {
   final TodosBloc todosBloc;
@@ -783,7 +783,7 @@ Create `blocs/tab/tab_event.dart`:
 ```dart
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:flutter_todos/models/models.dart';
+import 'package:flutter_web_todos/models/models.dart';
 
 @immutable
 abstract class TabEvent extends Equatable {
@@ -809,8 +809,8 @@ Create `blocs/tab/tab_bloc.dart` and let's quickly do the implementation.
 ```dart
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:flutter_todos/blocs/tab/tab.dart';
-import 'package:flutter_todos/models/models.dart';
+import 'package:flutter_web_todos/blocs/tab/tab.dart';
+import 'package:flutter_web_todos/models/models.dart';
 
 class TabBloc extends Bloc<TabEvent, AppTab> {
   @override
@@ -892,13 +892,13 @@ Up next, we'll focus on implementing the major screens in our Todos application.
 Let's create a new directory called `screens` where we will put all of our new screen widgets and then create `screens/home_screen.dart`.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 import 'package:todos_app_core/todos_app_core.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_todos/blocs/blocs.dart';
-import 'package:flutter_todos/widgets/widgets.dart';
-import 'package:flutter_todos/localization.dart';
-import 'package:flutter_todos/models/models.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
+import 'package:flutter_web_todos/blocs/blocs.dart';
+import 'package:flutter_web_todos/widgets/widgets.dart';
+import 'package:flutter_web_todos/localization.dart';
+import 'package:flutter_web_todos/models/models.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -946,13 +946,13 @@ Next, we'll implement the `DetailsScreen`.
 Create `screens/details_screen.dart` and let's build it.
 
 ```dart
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web/foundation.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 import 'package:todos_app_core/todos_app_core.dart';
-import 'package:flutter_todos/blocs/todos/todos.dart';
-import 'package:flutter_todos/screens/screens.dart';
-import 'package:flutter_todos/flutter_todos_keys.dart';
+import 'package:flutter_web_todos/blocs/todos/todos.dart';
+import 'package:flutter_web_todos/screens/screens.dart';
+import 'package:flutter_web_todos/flutter_todos_keys.dart';
 
 class DetailsScreen extends StatelessWidget {
   final String id;
@@ -1087,10 +1087,10 @@ There is also another `FloatingActionButton` which navigates the user to the `Ad
 Create `screens/add_edit_screen.dart` and let's have a look at the implementation.
 
 ```dart
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_web/foundation.dart';
+import 'package:flutter_web/material.dart';
 import 'package:todos_app_core/todos_app_core.dart';
-import 'package:flutter_todos/models/models.dart';
+import 'package:flutter_web_todos/models/models.dart';
 
 typedef OnSaveCallback = Function(String task, String note);
 
@@ -1212,11 +1212,11 @@ Next, let's implement all of the "widgets" (anything that isn't a screen).
 Let's create a new directory called `widgets` and put our `FilterButton` implementation in `widgets/filter_button.dart`.
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 import 'package:todos_app_core/todos_app_core.dart';
-import 'package:flutter_todos/blocs/filtered_todos/filtered_todos.dart';
-import 'package:flutter_todos/models/models.dart';
+import 'package:flutter_web_todos/blocs/filtered_todos/filtered_todos.dart';
+import 'package:flutter_web_todos/models/models.dart';
 
 class FilterButton extends StatelessWidget {
   final bool visible;
@@ -1333,14 +1333,14 @@ And don't forget to export it from the `models/models.dart` barrel file.
 Next, let's create `widgets/extra_actions.dart` and implement it.
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web/foundation.dart';
+import 'package:flutter_web/widgets.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 import 'package:todos_app_core/todos_app_core.dart';
-import 'package:flutter_todos/blocs/todos/todos.dart';
-import 'package:flutter_todos/models/models.dart';
-import 'package:flutter_todos/flutter_todos_keys.dart';
+import 'package:flutter_web_todos/blocs/todos/todos.dart';
+import 'package:flutter_web_todos/models/models.dart';
+import 'package:flutter_web_todos/flutter_todos_keys.dart';
 
 class ExtraActions extends StatelessWidget {
   ExtraActions({Key key}) : super(key: ArchSampleKeys.extraActionsButton);
@@ -1408,11 +1408,11 @@ Next we'll take a look at the `TabSelector` widget.
 Let's create `widgets/tab_selector.dart` and implement it.
 
 ```dart
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_web/cupertino.dart';
+import 'package:flutter_web/foundation.dart';
+import 'package:flutter_web/material.dart';
 import 'package:todos_app_core/todos_app_core.dart';
-import 'package:flutter_todos/models/models.dart';
+import 'package:flutter_web_todos/models/models.dart';
 
 class TabSelector extends StatelessWidget {
   final AppTab activeTab;
@@ -1459,15 +1459,15 @@ Next, we'll take a look at the `FilteredTodos` widget.
 Create `widgets/filtered_todos.dart` and let's implement it.
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web/foundation.dart';
+import 'package:flutter_web/widgets.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 import 'package:todos_app_core/todos_app_core.dart';
-import 'package:flutter_todos/blocs/blocs.dart';
-import 'package:flutter_todos/widgets/widgets.dart';
-import 'package:flutter_todos/screens/screens.dart';
-import 'package:flutter_todos/flutter_todos_keys.dart';
+import 'package:flutter_web_todos/blocs/blocs.dart';
+import 'package:flutter_web_todos/widgets/widgets.dart';
+import 'package:flutter_web_todos/screens/screens.dart';
+import 'package:flutter_web_todos/flutter_todos_keys.dart';
 
 class FilteredTodos extends StatelessWidget {
   FilteredTodos({Key key}) : super(key: key);
@@ -1551,10 +1551,10 @@ From the `FilteredTodos` widget, the user can navigate to the `DetailsScreen` wh
 Create `widgets/todo_item.dart` and let's build it.
 
 ```dart
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_web/foundation.dart';
+import 'package:flutter_web/material.dart';
 import 'package:todos_app_core/todos_app_core.dart';
-import 'package:flutter_todos/models/models.dart';
+import 'package:flutter_web_todos/models/models.dart';
 
 class TodoItem extends StatelessWidget {
   final DismissDirectionCallback onDismissed;
@@ -1619,9 +1619,9 @@ Next up, we'll create the `DeleteTodoSnackBar`.
 Create `widgets/delete_todo_snack_bar.dart` and let's implement it.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 import 'package:todos_app_core/todos_app_core.dart';
-import 'package:flutter_todos/models/models.dart';
+import 'package:flutter_web_todos/models/models.dart';
 
 class DeleteTodoSnackBar extends SnackBar {
   final ArchSampleLocalizations localizations;
@@ -1658,7 +1658,7 @@ We're almost done; just two more widgets to go!
 Create `widgets/loading_indicator.dart` and let's write it.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 
 class LoadingIndicator extends StatelessWidget {
   LoadingIndicator({Key key}) : super(key: key);
@@ -1683,14 +1683,14 @@ Lastly, we need to build our `Stats` widget.
 Let's create `widgets/stats.dart` and take a look at the implementation.
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web/material.dart';
+import 'package:flutter_web/foundation.dart';
+import 'package:flutter_web/widgets.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 import 'package:todos_app_core/todos_app_core.dart';
-import 'package:flutter_todos/blocs/stats/stats.dart';
-import 'package:flutter_todos/widgets/widgets.dart';
-import 'package:flutter_todos/flutter_todos_keys.dart';
+import 'package:flutter_web_todos/blocs/stats/stats.dart';
+import 'package:flutter_web_todos/widgets/widgets.dart';
+import 'package:flutter_web_todos/flutter_todos_keys.dart';
 
 class Stats extends StatelessWidget {
   Stats({Key key}) : super(key: key);
@@ -1875,16 +1875,16 @@ You can see how using `MultiBlocProvider` helps reduce the levels of nesting and
 The entire `main.dart` should look like this:
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:flutter_web/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 import 'package:todos_repository_simple/todos_repository_simple.dart';
 import 'package:todos_app_core/todos_app_core.dart';
-import 'package:flutter_todos/localization.dart';
-import 'package:flutter_todos/blocs/blocs.dart';
-import 'package:flutter_todos/models/models.dart';
-import 'package:flutter_todos/screens/screens.dart';
+import 'package:flutter_web_todos/localization.dart';
+import 'package:flutter_web_todos/blocs/blocs.dart';
+import 'package:flutter_web_todos/models/models.dart';
+import 'package:flutter_web_todos/screens/screens.dart';
 
 void main() {
   // BlocSupervisor oversees Blocs and delegates to BlocDelegate.

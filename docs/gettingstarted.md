@@ -55,7 +55,7 @@ For a Flutter application we can also import flutter_bloc.
 
 ```dart
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_bloc/flutter_bloc.dart';
 ```
 
 For an AngularDart application we can also import angular_bloc.
